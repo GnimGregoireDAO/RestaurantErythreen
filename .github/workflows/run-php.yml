@@ -16,13 +16,13 @@ jobs:
         php-version: '8.0'  # Vous pouvez changer la version PHP selon vos besoins
 
     - name: Start PHP server
-      run: php -S localhost:65530 -t Restaurant &
+      run: php -S localhost:65530 -t vues &
 
     - name: Wait for server to start
-      run: sleep 90  # Augmentez la durée d'attente pour garantir que le serveur démarre
+      run: sleep 30  # Augmentez la durée d'attente pour garantir que le serveur démarre
 
     - name: Curl HTML pages
       run: |
-        for file in Restaurant/*.php; do
+        for file in Restaurant/vues/*.php; do
           curl http://localhost:65530/$(basename $file)
         done
