@@ -1,0 +1,24 @@
+name: Run PHP and Display HTML
+
+on: [push, pull_request]
+
+jobs:
+  run-php:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v4
+
+    - name: Set up PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.0'  # Vous pouvez changer la version PHP selon vos besoins
+
+    - name: Run PHP files
+      run: |
+        php -l src/ # Lint tous les fichiers PHP dans le répertoire src
+        php src/votre-fichier.php  # Exécute un fichier PHP spécifique
+
+    - name: Display HTML
+      run: cat src/votre-fichier.html  # Affichez le contenu HTML
