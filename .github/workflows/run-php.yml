@@ -13,16 +13,16 @@ jobs:
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
-        php-version: '8.0'  # You can change the PHP version as needed
+        php-version: '8.0'  # Vous pouvez changer la version PHP selon vos besoins
 
     - name: Start PHP server
-      run: php -S localhost:8000 -t chemin/vers/dossier &
+      run: php -S localhost:65530 -t Restaurant &
 
     - name: Wait for server to start
-      run: sleep 30  # Increase the sleep duration to ensure the server starts
+      run: sleep 90  # Augmentez la durée d'attente pour garantir que le serveur démarre
 
     - name: Curl HTML pages
       run: |
-        for file in /workspaces/RestaurantErythreen/Restaurant/*.php; do
-          curl http://localhost:8000/$(basename $file)
+        for file in Restaurant/*.php; do
+          curl http://localhost:65530/$(basename $file)
         done
