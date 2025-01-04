@@ -16,10 +16,13 @@ jobs:
         php-version: '8.0'  # Vous pouvez changer la version PHP selon vos besoins
 
     - name: Start PHP server
-      run: php -S localhost:8000 -t src &
+      run: php -S localhost:8000 -t chemin/vers/dossier &
 
     - name: Wait for server to start
       run: sleep 10
 
-    - name: Curl HTML page
-      run: curl http://localhost:8000/votre-fichier.php
+    - name: Curl HTML pages
+      run: |
+        for file in /workspaces/RestaurantErythreen/Restaurant.php; do
+          curl http://localhost:8000/$(basename $file)
+        done
