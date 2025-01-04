@@ -15,10 +15,11 @@ jobs:
       with:
         php-version: '8.0'  # Vous pouvez changer la version PHP selon vos besoins
 
-    - name: Run PHP files
-      run: |
-        php -l src/ # Lint tous les fichiers PHP dans le répertoire src
-        php src/votre-fichier.php  # Exécute un fichier PHP spécifique
+    - name: Start PHP server
+      run: php -S localhost:8000 -t src &
 
-    - name: Display HTML
-      run: cat src/votre-fichier.html  # Affichez le contenu HTML
+    - name: Wait for server to start
+      run: sleep 10
+
+    - name: Curl HTML page
+      run: curl http://localhost:8000/votre-fichier.php
